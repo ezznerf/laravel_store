@@ -1,0 +1,89 @@
+body{
+    min-width: 1000px;
+    /*background: black;*/
+    background-color : #DCDCDC;
+    background-size: 50% ;
+}
+
+.container-fluid{
+    padding: 35px 0;
+    background: #A9A9A9;
+    height: 8em;
+
+}
+.block{
+    width: 11em;
+    height: 20em;
+    margin:0;
+
+    right:-27%;
+    text-align: center;
+    position: relative;
+    display: block;
+}
+.block a{
+    width: 13em;
+    height: 20em;
+    text-decoration: none;
+    padding: 9em 1em;
+}
+.block2{
+    width: 13em;
+    height: 8em;
+    margin:0;
+    top: 4em;
+    right:-27%;
+    text-align: center;
+    position: relative;
+    display: block;
+}
+.block2 a{
+    width: 13em;
+    height: 8em;
+}
+.button2{
+    padding:3em 0.5em;
+}
+.block3{
+
+    width: 16em;
+    height: 8em;
+    margin:0;
+    top:-14em;
+    right:-47%;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+.block3 a{
+
+    width: 13em;
+    height: 8em;
+    text-decoration: none;
+    padding: 9em 1em;
+}
+.block4{
+    width: 13em;
+    height: 11em;
+    top: -38em;
+    margin:0;
+    right:-49%;
+    text-align: center;
+    position: relative;
+    display: block;
+}
+.block4 a{
+    width: 13em;
+    height: 11em;
+    text-decoration: none;
+    padding: 5em 1em;
+}
+.btns {
+    margin-top: 6em;
+    left: 7%;
+    position: relative;
+    background-size: 50%
+}
+.box{
+    width: 12em;
+}

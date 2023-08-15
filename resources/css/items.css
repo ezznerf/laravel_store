@@ -1,0 +1,17 @@
+head{
+    position: fixed;
+}
+.container-fluid{
+   position: fixed;   top: 0;   left: 0;   z-index: 9999;   width: 100%;   height: 40px;   background-color: white;
+
+}
+body{
+    margin-top: 45px;
+    position: relative;
+    display: block;
+    background-color : #DCDCDC;
+    margin-bottom: 45px;
+}
+h4{
+    right: 10em;
+}
