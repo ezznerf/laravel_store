@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Phone;
+use App\Models\Product;
 use App\Models\Smartphone;
 use App\Models\Smartwatch;
 use App\Models\Tablet;
@@ -17,7 +18,7 @@ class ProductsController extends Controller
 
     public function smartphone()
     {
-        $items=Smartphone::all();
+        $items=Product::all();
         return view('product.smartphones', compact('items'));
 
     }
@@ -36,9 +37,9 @@ class ProductsController extends Controller
         $items=Smartwatch::all();
         return view('product.smartwatches', compact('items'));
     }
-    public function showSmartphone(Smartphone $smartphone)
+    public function showSmartphone(Product $product)
     {
-        return view('product.showSmartphone', compact('smartphone'));
+        return view('product.showSmartphone', compact('product'));
     }
     public function showPhone(Phone $phone)
     {

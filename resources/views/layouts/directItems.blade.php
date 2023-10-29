@@ -11,6 +11,27 @@
 
 </head>
 <body>
+<header>
+    <div class="container-fluid ">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('product.index')}}">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('product.smartphone')}}">SMARTPHONES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('product.phone')}}">PHONES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('product.tablet')}}">TABLETS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('product.smartwatch')}}" >SMARTWATCHES</a>
+            </li>
+        </ul>
+    </div>
+</header>
     @yield('content')
 </body>
 </html>

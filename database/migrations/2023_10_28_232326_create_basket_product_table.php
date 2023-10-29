@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatBasketProductsTable extends Migration
+class CreateBasketProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreatBasketProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('basket_products', function (Blueprint $table) {
+        Schema::create('basket_product', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('baskets_id');
-            $table->unsignedBigInteger('products_id');
+            $table->unsignedBigInteger('basket_id');
+            $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
-            $table->foreign('products_id')
+            $table->foreign('product_id')
                 ->references('id')
                 ->on('products')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreign('baskets_id')
+            $table->foreign('basket_id')
                 ->references('id')
                 ->on('baskets')
                 ->onUpdate('cascade')
@@ -38,12 +38,12 @@ class CreatBasketProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('basket_products', function (Blueprint $table) {
+        Schema::table('basket_product', function (Blueprint $table) {
 
-            $table->dropForeign(['products_id']);
-            $table->dropForeign(['baskets_id']);
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['basket_id']);
         });
 
-        Schema::dropIfExists('basket_products');
+        Schema::dropIfExists('basket_product');
     }
 }
