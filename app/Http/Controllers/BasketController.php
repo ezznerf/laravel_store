@@ -77,6 +77,33 @@ class BasketController extends Controller {
             ->withCookie(cookie('basket_id', $basket_id, 525600));
     }
 
+//    public function remove(Request $request, $id) {
+//        $basket_id = $request->cookie('basket_id');
+//        if (empty($basket_id)) {
+//            abort(404);
+//        }
+//        $this->change($basket_id, $id, -10000000000000000);
+//        return redirect()
+//            ->route('basket.index')
+//            ->withCookie(cookie('basket_id', $basket_id, 525600));
+//    }
+
+    public function remove(Request $request, $id)
+    {
+        $basket_id = $request->cookie('basket_id');
+        if (empty($basket_id)) {
+            abort(404);
+        }
+        $basket = Basket::findOrFail($basket_id);
+        // если товар есть в корзине — изменяем кол-во
+        if ($basket->products->contains($id)) {
+            $pivotRow = $basket->products()->where('product_id', $id)->first()->pivot;
+            $pivotRow->delete();
+            return redirect()
+                ->route('basket.index')
+                ->withCookie(cookie('basket_id', $basket_id, 525600));
+        }
+    }
     /**
      * Изменяет кол-во товара $product_id на величину $count
      */
@@ -99,5 +126,14 @@ class BasketController extends Controller {
                 $pivotRow->delete();
             }
         }
+    }
+    public function clear(Request $request){
+        $basket_id = $request->cookie('basket_id');
+        if (empty($basket_id)) {
+            abort(404);
+        }
+        $basket = Basket::findOrFail($basket_id);
+        $basket->delete();
+
     }
 }

@@ -33,3 +33,7 @@ Route::post('/basket/plus/{id}', 'BasketController@plus')
 Route::post('/basket/minus/{id}', 'BasketController@minus')
     ->where('id', '[0-9]+')
     ->name('basket.minus');
+Route::post('/basket/remove/{id}', 'BasketController@remove')
+    ->where('id', '[0-9]+')
+    ->name('basket.remove');
+Route::post('/basket/clear', 'BasketController@clear');
