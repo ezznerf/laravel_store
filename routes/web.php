@@ -19,9 +19,9 @@ Route::get('/phones', 'ProductsController@phone')->name('product.phone');
 Route::get('/tablets', 'ProductsController@tablet')->name('product.tablet');
 Route::get('/smartwatches', 'ProductsController@smartwatch')->name('product.smartwatch');
 Route::get('/smartphones/{product}', 'ProductsController@showSmartphone')->name('product.showSmartphone');
-Route::get('/phones/{phone}', 'ProductsController@showPhone')->name('product.showPhone');
-Route::get('/tablets/{tablet}', 'ProductsController@showTablet')->name('product.showTablet');
-Route::get('/smartwatches/{smartwatch}', 'ProductsController@showSmartwatch')->name('product.showSmartwatch');
+Route::get('/phones/{product}', 'ProductsController@showPhone')->name('product.showPhone');
+Route::get('/tablets/{product}', 'ProductsController@showTablet')->name('product.showTablet');
+Route::get('/smartwatches/{product}', 'ProductsController@showSmartwatch')->name('product.showSmartwatch');
 Route::post('/basket/add/{id}', 'BasketController@add')
     ->where('id', '[0-9]+')
     ->name('basket.add');
@@ -36,4 +36,4 @@ Route::post('/basket/minus/{id}', 'BasketController@minus')
 Route::post('/basket/remove/{id}', 'BasketController@remove')
     ->where('id', '[0-9]+')
     ->name('basket.remove');
-Route::post('/basket/clear', 'BasketController@clear');
+Route::post('/basket/clear', 'BasketController@clear')->name('basket.clear');

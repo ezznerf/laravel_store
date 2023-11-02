@@ -6,8 +6,9 @@
         @if (count($products))
             @php
                 $basketCost = 0;
+                $i = 0;
             @endphp
-            <form action="#" method="post" class="text-right">
+            <form action="{{route('basket.clear')}}" method="post" class="text-right">
                 @csrf
                 <button type="submit" class="btn btn-outline-danger mb-4 mt-0">
                     Очистить корзину
@@ -30,7 +31,10 @@
                         $basketCost = $basketCost + $itemCost;
                     @endphp
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->iteration}}</td>
+                        @php
+                        $i++;
+                        @endphp
                         <td>
                             <a href="{{ route('product.showSmartphone', [$product->id]) }}">
                                 {{ $product->model }}
@@ -73,6 +77,7 @@
                         </td>
                     </tr>
                 @endforeach
+                <h1>{{$i}}</h1>
                 <tr>
                     <th colspan="4" class="text-right">Итого</th>
                     <th>{{ number_format($basketCost, 2, '.', '') }}</th>

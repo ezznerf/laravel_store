@@ -18,13 +18,13 @@ class ProductsController extends Controller
 
     public function smartphone()
     {
-        $items=Product::all();
+        $items=Product::all()->where('type_id', '=', 1);
         return view('product.smartphones', compact('items'));
 
     }
     public function phone()
     {
-        $items=Phone::all();
+        $items=Product::all()->where('type_id', '=', 2);
         return view('product.phones', compact('items'));
     }
     public function tablet()
@@ -41,17 +41,17 @@ class ProductsController extends Controller
     {
         return view('product.showSmartphone', compact('product'));
     }
-    public function showPhone(Phone $phone)
+    public function showPhone(Product $product)
     {
-        return view('product.showPhone', compact('phone'));
+        return view('product.showPhone', compact('product'));
     }
-    public function showTablet(Tablet $tablet)
+    public function showTablet(Product $product)
     {
-        return view('product.showTablet', compact('tablet'));
+        return view('product.showTablet', compact('product'));
     }
-    public function  showSmartwatch(Smartwatch $smartwatch)
+    public function  showSmartwatch(Product $product)
     {
-        return view('product.showSmartwatch', compact('smartwatch'));
+        return view('product.showSmartwatch', compact('product'));
     }
 
 }

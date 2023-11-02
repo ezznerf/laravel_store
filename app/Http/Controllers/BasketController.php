@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\BasketProduct;
 use Illuminate\Http\Request;
 
-class BasketController extends Controller {
+class BasketController extends Controller
+{
 
     public function index(Request $request)
     {
@@ -17,14 +19,17 @@ class BasketController extends Controller {
             abort(404);
         }
     }
-    public function checkout() {
+
+    public function checkout()
+    {
         return view('basket.checkout');
     }
 
     /**
      * Добавляет товар с идентификатором $id в корзину
      */
-    public function add(Request $request, $id) {
+    public function add(Request $request, $id)
+    {
         $basket_id = $request->cookie('basket_id');
         $quantity = $request->input('quantity') ?? 1;
         if (empty($basket_id)) {
@@ -50,7 +55,9 @@ class BasketController extends Controller {
         // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
         return back()->withCookie(cookie('basket_id', $basket_id, 525600));
     }
-    public function plus(Request $request, $id) {
+
+    public function plus(Request $request, $id)
+    {
         $basket_id = $request->cookie('basket_id');
         if (empty($basket_id)) {
             abort(404);
@@ -65,7 +72,8 @@ class BasketController extends Controller {
     /**
      * Уменьшает кол-во товара $id в корзине на единицу
      */
-    public function minus(Request $request, $id) {
+    public function minus(Request $request, $id)
+    {
         $basket_id = $request->cookie('basket_id');
         if (empty($basket_id)) {
             abort(404);
@@ -104,10 +112,12 @@ class BasketController extends Controller {
                 ->withCookie(cookie('basket_id', $basket_id, 525600));
         }
     }
+
     /**
      * Изменяет кол-во товара $product_id на величину $count
      */
-    private function change($basket_id, $product_id, $count = 0) {
+    private function change($basket_id, $product_id, $count = 0)
+    {
         if ($count == 0) {
             return;
         }
@@ -127,13 +137,37 @@ class BasketController extends Controller {
             }
         }
     }
-    public function clear(Request $request){
+
+    public function clear(Request $request)
+    {
         $basket_id = $request->cookie('basket_id');
         if (empty($basket_id)) {
             abort(404);
         }
-        $basket = Basket::findOrFail($basket_id);
-        $basket->delete();
 
+        $basket = Basket::find($basket_id);
+        $pivotRow = $basket->products();
+        while ($basket->products()->where('product_id', '>', 0)->first()) {
+
+            $pivotRow = $basket->products()->where('product_id', '>', 0)->first()->pivot;
+            if ($pivotRow == null){
+                return redirect()
+                    ->route('basket.index')
+                    ->withCookie(cookie('basket_id', $basket_id, 525600));
+            }
+            $pivotRow->delete();
+            if ($pivotRow == null){
+                return redirect()
+                    ->route('basket.index')
+                    ->withCookie(cookie('basket_id', $basket_id, 525600));
+            }
+
+        }
+        return redirect()
+            ->route('basket.index')
+            ->withCookie(cookie('basket_id', $basket_id, 525600));
     }
 }
+
+
+
