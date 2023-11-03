@@ -29,12 +29,12 @@ class ProductsController extends Controller
     }
     public function tablet()
     {
-        $items=Tablet::all();
+        $items=Product::all()->where('type_id', '=', 3);
         return view('product.tablets', compact('items'));
     }
     public function smartwatch()
     {
-        $items=Smartwatch::all();
+        $items=Product::all()->where('type_id', '=', 4);
         return view('product.smartwatches', compact('items'));
     }
     public function showSmartphone(Product $product)

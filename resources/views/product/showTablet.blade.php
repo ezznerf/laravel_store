@@ -71,13 +71,26 @@
                     </dd>
 
                 </dl>
-                <dl class="row">
-                    <dt class="col-sm-6 h2 text-danger">{{$product->price}}₽</dt>
-                    <dd class="col-sm-6">
-                        <a class="btn btn-primary"href="#" style="height: 50px; width: 150px ; ">КУПИТЬ</a>
-                    </dd>
-
-                </dl>
+                <div class="col-md">
+                    <form action="{{ route('basket.add', ['id' => $product->id]) }}"
+                          method="post" class="form-inline">
+                        @csrf
+                        <div class="container">
+                            <div class="row align-items-start">
+                                <div class="col-6">
+                                    <label class="h4" for="input-quantity">Количество</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" name="quantity" id="input-quantity" value="1"
+                                           class="form-control mx-2 w-25">
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="h4 btn btn-success">Добавить в корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <p class="h4">Описание: {{$product->description}}</p>
 
 

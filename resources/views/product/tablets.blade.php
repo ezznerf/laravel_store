@@ -1,24 +1,7 @@
 @extends('layouts.directItems')
 @section('content')
 
-    <header>
-        <div class="container-fluid ">
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('product.index')}}">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('product.phone')}}">PHONES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('product.smartphone')}}">SMARTPHONES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('product.smartwatch')}}" >SMARTWATCHES</a>
-                </li>
-            </ul>
-        </div>
-    </header>
+
     <div class="container">
         <div class=row>
             @foreach($items as $item)
