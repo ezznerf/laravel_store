@@ -77,13 +77,18 @@
                         </td>
                     </tr>
                 @endforeach
-                <h1>{{$i}}</h1>
                 <tr>
                     <th colspan="4" class="text-right">Итого</th>
                     <th>{{ number_format($basketCost, 2, '.', '') }}</th>
                     <th></th>
                 </tr>
             </table>
+            <form action="{{route('sell.index')}}" method="get">
+                @csrf
+                <button type="submit" class="btn btn-outline-success mb-4 mt-0 position-relative" style="left: 54rem;width: 10rem">
+                    Купить
+                </button>
+            </form>
     </div>
         @else
             <p>Ваша корзина пуста</p>

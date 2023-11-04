@@ -37,3 +37,4 @@ Route::post('/basket/remove/{id}', 'BasketController@remove')
     ->where('id', '[0-9]+')
     ->name('basket.remove');
 Route::post('/basket/clear', 'BasketController@clear')->name('basket.clear');
+Route::get('/sell/index', 'SellController@index')->name('sell.index');
